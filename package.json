@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "playwright": "^1.57.0"
+  },
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "description": "Learning Playwright Automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sm-kiwiqa/Playwright-Automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sm-kiwiqa/Playwright-Automation/issues"
+  },
+  "homepage": "https://github.com/sm-kiwiqa/Playwright-Automation#readme"
+}
