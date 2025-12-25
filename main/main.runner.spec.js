@@ -7,7 +7,8 @@ import { navigateSettings } from '../settings/settings.spec';
 // import { navigateDPR } from '../project_management/dpr/dpr.spec';
 // import { navigateQHSEManagement } from '../qhse_management/qhse/qhse_management.spec';
 // import { navigateQHSECards } from '../qhse_management/qhse_cards/qhse_cards.spec';
-import { navigateFeedback } from '../feedback/feedback.spec';
+// import { navigateFeedback } from '../feedback/feedback.spec';
+import { navigateEquipmentManagement } from '../equipment_management/equipment_management/equipment_management.spec';
 import { logout } from '../login/logout.spec';
 
 test('Full Application Flow', async ({ page }) => {
@@ -20,6 +21,7 @@ test('Full Application Flow', async ({ page }) => {
     // await navigateDPR(page);  // 6️⃣
     // await navigateQHSEManagement(page);  // 7️⃣
     // await navigateQHSECards(page);  // 8️⃣
-    await navigateFeedback(page);  // 9️⃣
-    await logout(page);        // 🔟
+    // await navigateFeedback(page);  // 9️⃣
+    await navigateEquipmentManagement(page);  // 🔟
+    await logout(page);        //  1️⃣1️⃣
 });
