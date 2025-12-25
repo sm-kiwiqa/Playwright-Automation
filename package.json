@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/sm-kiwiqa/Playwright-Automation/issues"
   },
-  "homepage": "https://github.com/sm-kiwiqa/Playwright-Automation#readme"
+  "homepage": "https://github.com/sm-kiwiqa/Playwright-Automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0"
+  }
 }
