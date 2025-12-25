@@ -5,7 +5,6 @@ export async function navigateShifts(page) {
     await scrollSidebar(page, 'ul.MuiList-root', 'Sidebar scrolled to top');
 
     await Promise.all([
-        page.waitForURL(/\/client\/setting$/),
         page.getByRole('link', { name: 'Shift Details' }).click(),
     ]);
 
