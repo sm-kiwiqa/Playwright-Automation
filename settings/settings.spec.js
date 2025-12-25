@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { scrollSidebar } from '../sidebar/sidebar.spec';
 
 export async function navigateSettings(page) {
-    await scrollSidebar(page);
+    await scrollSidebar(page, '.MuiList-root', 'Sidebar scrolled to bottom');
 
     await Promise.all([
         page.waitForURL(/\/client\/setting$/),

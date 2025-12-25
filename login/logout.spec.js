@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { scrollSidebar } from '../sidebar/sidebar.spec';
 
 export async function logout(page) {
-    await scrollSidebar(page);
+    await scrollSidebar(page, 'ul.MuiList-root', 'Sidebar scrolled to bottom');
 
     // CLICK LOGOUT
     const logout = page.locator('li:has-text("Logout")');
