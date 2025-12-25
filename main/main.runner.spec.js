@@ -3,6 +3,7 @@ import { login } from '../login/login1.spec';
 import { navigateSettings } from '../settings/settings.spec';
 import { navigateShifts } from '../project_management/shifts/shifts.spec';
 import { navigateToolboxTalk } from '../project_management/toolbox_talk/toolbox_talk.spec';
+import { navigateReport } from '../project_management/report/report.spec';
 // import { otherFeature } from '../features/other.feature';
 import { logout } from '../login/logout.spec';
 
@@ -12,6 +13,7 @@ test('Full Application Flow', async ({ page }) => {
     await navigateSettings(page);  // 2️⃣
     await navigateShifts(page);  // 3️⃣
     await navigateToolboxTalk(page);  // 4️⃣
+    await navigateReport(page);  // 4️⃣
     await logout(page);        // 5️⃣
 
 });
