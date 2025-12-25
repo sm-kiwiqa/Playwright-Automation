@@ -145,4 +145,4 @@ tmp/
 *.temp
 .package-lock.json
 ./playwright/.package-lock.json
-./playwright-report
+./playwright-report/index.html
