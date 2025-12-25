@@ -5,6 +5,7 @@ import { navigateSettings } from '../settings/settings.spec';
 // import { navigateToolboxTalk } from '../project_management/toolbox_talk/toolbox_talk.spec';
 // import { navigateReport } from '../project_management/report/report.spec';
 import { navigateDPR } from '../project_management/dpr/dpr.spec';
+import { navigateQHSECards } from '../qhse_management/qhse_cards/qhse_cards.spec';
 // import { otherFeature } from '../features/other.feature';
 import { logout } from '../login/logout.spec';
 
@@ -16,6 +17,7 @@ test('Full Application Flow', async ({ page }) => {
     // await navigateToolboxTalk(page);  // 4️⃣
     // await navigateReport(page);  // 5️⃣
     await navigateDPR(page);  // 6️⃣
-    await logout(page);        // 7️⃣
+    await navigateQHSECards(page);  // 7️⃣
+    await logout(page);        // 8️⃣
 
 });
