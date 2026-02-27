@@ -1,29 +1,44 @@
 import { test } from '@playwright/test';
-import { login } from '../login/login1.spec';
-import { navigateSettings } from '../settings/settings.spec';
-// import { navigateShifts } from '../project_management/shifts/shifts.spec';
-// import { navigateToolboxTalk } from '../project_management/toolbox_talk/toolbox_talk.spec';
-// import { navigateReport } from '../project_management/report/report.spec';
-// import { navigateDPR } from '../project_management/dpr/dpr.spec';
-// import { navigateQHSEManagement } from '../qhse_management/qhse/qhse_management.spec';
-// import { navigateQHSECards } from '../qhse_management/qhse_cards/qhse_cards.spec';
-// import { navigateFeedback } from '../feedback/feedback.spec';
-// import { navigateEquipmentManagement } from '../equipment_management/equipment_management/equipment_management.spec';
-import { navigateInventory } from '../equipment_management/inventory/inventory.spec';
-import { logout } from '../login/logout.spec';
+import { LoginPage } from '../src/pages/LoginPage.js';
+import { DashboardPage } from '../src/pages/DashboardPage.js';
+import { SettingsPage } from '../src/pages/SettingsPage.js';
+import { ShiftsPage } from '../src/pages/ShiftsPage.js';
+import { ToolboxTalkPage } from '../src/pages/ToolboxTalkPage.js';
+import { ReportPage } from '../src/pages/ReportPage.js';
+import { DPRPage } from '../src/pages/DPRPage.js';
+import { QHSEManagementPage } from '../src/pages/QHSEManagementPage.js';
+import { QHSECardsPage } from '../src/pages/QHSECardsPage.js';
+import { FeedbackPage } from '../src/pages/FeedbackPage.js';
+import { EquipmentManagementPage } from '../src/pages/EquipmentManagementPage.js';
+import { testUsers } from '../config/testConfig.js';
+
+// full-flow runner (can still be used but individual specs exist)
 
 test('Full Application Flow', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const dashboardPage = new DashboardPage(page);
+    const settingsPage = new SettingsPage(page);
+    const shiftsPage = new ShiftsPage(page);
+    const toolboxPage = new ToolboxTalkPage(page);
+    const reportPage = new ReportPage(page);
+    const dprPage = new DPRPage(page);
+    const qhsePage = new QHSEManagementPage(page);
+    const qhseCardsPage = new QHSECardsPage(page);
+    const feedbackPage = new FeedbackPage(page);
+    const equipmentPage = new EquipmentManagementPage(page);
 
-    await login(page);          // 1️⃣
-    await navigateSettings(page);  // 2️⃣
-    // await navigateShifts(page);  // 3️⃣
-    // await navigateToolboxTalk(page);  // 4️⃣
-    // await navigateReport(page);  // 5️⃣
-    // await navigateDPR(page);  // 6️⃣
-    // await navigateQHSEManagement(page);  // 7️⃣
-    // await navigateQHSECards(page);  // 8️⃣
-    // await navigateFeedback(page);  // 9️⃣
-    // await navigateEquipmentManagement(page);  // 🔟
-    await navigateInventory(page);  // 1️⃣1️⃣
-    await logout(page);        //  1️⃣2️⃣
+    await loginPage.navigateToLogin();
+    await loginPage.login(testUsers.admin.username, testUsers.admin.password);
+
+    await settingsPage.navigate();
+    await shiftsPage.navigate();
+    await toolboxPage.navigate();
+    await reportPage.navigate();
+    await dprPage.navigate();
+    await qhsePage.navigate();
+    await qhseCardsPage.navigate();
+    await feedbackPage.navigate();
+    await equipmentPage.navigate();
+
+    await dashboardPage.clickLogout();
 });
