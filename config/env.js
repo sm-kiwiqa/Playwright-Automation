@@ -1,6 +1,5 @@
 require('dotenv').config();
-const { use } = require('react');
-const user_data = require('../test-data/users.jason');
+const users = require('../test-data/users.json');
 
 const env = {
   baseURL: process.env.BASE_URL,
@@ -9,8 +8,8 @@ const env = {
     password: process.env.VALID_PASSWORD
   },
   invalidUser: {
-    email: user_data.invalid_user.email,
-    password: user_data.invalid_user.password
+    email: users.invalidUser.email,
+    password: users.invalidUser.password
   }
 };
 

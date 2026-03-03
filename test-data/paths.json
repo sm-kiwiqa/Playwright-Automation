@@ -1,4 +1,7 @@
 {
+    "login": {
+        "url": "https://reynard-qa-m7xqu.ondigitalocean.app/authentication/sign-in"
+    },
     "setting": {
         "url": "https://reynard-qa-m7xqu.ondigitalocean.app/client/setting",
         "title": "Settings"

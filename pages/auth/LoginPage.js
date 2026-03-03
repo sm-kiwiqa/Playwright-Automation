@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+const { paths } = require('../../test-data/paths.json');
 const BasePage = require('../common/BasePage');
 
 class LoginPage extends BasePage {
@@ -9,7 +11,16 @@ class LoginPage extends BasePage {
     this.loginButton = page.getByRole('button', { name: 'Log In' });
     this.rememberMeCheckbox = page.getByLabel('Remember me');
     this.forgotPasswordLink = page.getByText('Forgot Your Password?');
-    this.logoutButton = page.getByText('Logout', { exact: true });
+    this.sidebar = page.locator('.MuiDrawer-paper');
+    this.logoutButton = page.locator('li:has-text("Logout")');
+
+    this.logoutPopupText = page.getByText(
+      'Are you sure you want to logout?',
+      { exact: true }
+    );
+
+    this.yesButton = page.getByRole('button', { name: 'Yes' });
+    this.noButton = page.getByRole('button', { name: 'No' });
   }
 
   async login(email, password) {
@@ -29,8 +40,34 @@ class LoginPage extends BasePage {
     await this.forgotPasswordLink.click();
   }
 
-  async logout() {
+  async logoutWithConfirmation() {
+
+    await this.sidebar.first().evaluate(el => {
+      el.scrollTop = el.scrollHeight;
+    });
+
+    // Click Logout
+    await this.logoutButton.scrollIntoViewIfNeeded();
     await this.logoutButton.click();
+
+    // Wait for popup
+    await expect(this.logoutPopupText).toBeVisible();
+
+    // Click NO first
+    await this.noButton.click();
+
+    // Ensure still logged in (popup closed)
+    await expect(this.logoutPopupText).not.toBeVisible();
+
+    // Click Logout again
+    await this.logoutButton.scrollIntoViewIfNeeded();
+    await this.logoutButton.click();
+
+    // Click YES
+    await this.yesButton.click();
+
+    // Wait for redirect
+    await this.page.waitForURL(process.env.BASE_URL);
   }
 }
 

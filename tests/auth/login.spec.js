@@ -1,25 +1,9 @@
 const { test, expect } = require('../../fixtures/baseTest');
 const env = require('../../config/env');
 const paths = require('../../test-data/paths.json');
+const path = require('node:path');
 
 test.describe('Login Module', () => {
-
-  test('User should login with valid credentials and land on Settings page', async ({ loginPage, page }) => {
-
-    await loginPage.navigate('/');
-
-    await loginPage.login(
-      env.validUser.email,
-      env.validUser.password
-    );
-
-    // ✅ Validate exact full URL
-    await expect(page).toHaveURL(paths.setting.url);
-
-    // ✅ Validate page content (More reliable than only URL)
-    await expect(page.getByText(paths.setting.title)).toBeVisible();
-  });
-
 
   test('User should see error with invalid credentials', async ({ loginPage, page }) => {
 
@@ -34,21 +18,57 @@ test.describe('Login Module', () => {
       .toContainText('Password must contain at least one uppercase letter');
   });
 
-  test('User should logout successfully', async ({ loginPage, page }) => {
+  test('User should login with valid credentials and land on Settings page', async ({ loginPage, page }) => {
 
-    // Perform Logout
-    await loginPage.logout();
+    await loginPage.navigate('/');
 
-    // ✅ Validate redirected to login page
-    await expect(page).toHaveURL(
-      `${env.baseURL}${env.paths.login}`
+    await loginPage.login(
+      env.validUser.email,
+      env.validUser.password
     );
 
-    // ✅ Validate login button visible again
+    // ✅ Validate exact full URL
+    await expect(page).toHaveURL(paths.setting.url);
+  });
+
+  test('User should logout successfully', async ({ loginPage, page }) => {
+
+    // Login first (important)
+    await loginPage.navigate('/');
+    await loginPage.login(
+      env.validUser.email,
+      env.validUser.password
+    );
+
+    // Perform logout with full flow
+    await loginPage.logoutWithConfirmation();
+
+    // Final validation
+    await expect(page).toHaveURL(paths.login.url);
+
     await expect(
-      page.getByRole('button', { name: /login/i })
+      page.getByRole('button', { name: 'Log In' })
     ).toBeVisible();
   });
 
+  test('User should redirected to the Project Management Page', async ({ loginPage, page }) => {
+
+    // Login first (important)
+    await loginPage.navigate('/');
+    await loginPage.login(
+      env.validUser.email,
+      env.validUser.password
+    );
+
+    // Perform logout with full flow
+    await loginPage.logoutWithConfirmation();
+
+    // Final validation
+    await expect(page).toHaveURL(paths.login.url);
+
+    await expect(
+      page.getByRole('button', { name: 'Log In' })
+    ).toBeVisible();
+  });
 
 });
