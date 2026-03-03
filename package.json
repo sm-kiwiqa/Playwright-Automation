@@ -1,14 +1,15 @@
 {
-  "dependencies": {
-    "dotenv": "^17.2.3",
-    "playwright": "^1.57.0"
-  },
-  "name": "playwright-automation",
+  "name": "reynard-automation-1",
   "version": "1.0.0",
-  "description": "Learning Playwright Automation",
-  "main": "index.js",
+  "description": "",
+  "main": "playwright.config.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "report": "npx playwright show-report"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,10 @@
   },
   "homepage": "https://github.com/sm-kiwiqa/Playwright-Automation#readme",
   "devDependencies": {
-    "@playwright/test": "^1.57.0"
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
   }
 }
