@@ -1,5 +1,4 @@
 const { expect } = require('@playwright/test');
-const { paths } = require('../../test-data/paths.json');
 const BasePage = require('../common/BasePage');
 
 class LoginPage extends BasePage {

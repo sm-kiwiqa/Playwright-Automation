@@ -1,7 +1,6 @@
 const { test, expect } = require('../../fixtures/baseTest');
 const env = require('../../config/env');
 const paths = require('../../test-data/paths.json');
-const path = require('node:path');
 
 test.describe('Login Module', () => {
 
@@ -28,7 +27,7 @@ test.describe('Login Module', () => {
     );
 
     // ✅ Validate exact full URL
-    await expect(page).toHaveURL(paths.setting.url);
+    await expect(page).toHaveURL(paths.setting.route);
   });
 
   test('User should logout successfully', async ({ loginPage, page }) => {
@@ -44,7 +43,7 @@ test.describe('Login Module', () => {
     await loginPage.logoutWithConfirmation();
 
     // Final validation
-    await expect(page).toHaveURL(paths.login.url);
+    await expect(page).toHaveURL(paths.login.route);
 
     await expect(
       page.getByRole('button', { name: 'Log In' })
@@ -64,7 +63,7 @@ test.describe('Login Module', () => {
     await loginPage.logoutWithConfirmation();
 
     // Final validation
-    await expect(page).toHaveURL(paths.login.url);
+    await expect(page).toHaveURL(paths.login.route);
 
     await expect(
       page.getByRole('button', { name: 'Log In' })
